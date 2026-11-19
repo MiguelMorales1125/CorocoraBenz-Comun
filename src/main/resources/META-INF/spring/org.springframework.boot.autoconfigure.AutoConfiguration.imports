@@ -1,0 +1,4 @@
+com.corocorabenz.comun.credencial.CredencialInternaAutoConfiguration
+com.corocorabenz.comun.motor.MotorAutoConfiguration
+com.corocorabenz.comun.portal.SeguridadPortalAutoConfiguration
+com.corocorabenz.comun.web.ErroresApiAutoConfiguration

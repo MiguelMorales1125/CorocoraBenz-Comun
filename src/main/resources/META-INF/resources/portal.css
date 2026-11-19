@@ -1,0 +1,405 @@
+/*
+ * Estilos comunes de los portales de Corocora Benz. Cada portal lo enlaza como /portal.css.
+ * Sobrio y accesible: contraste AA, foco siempre visible y controles de al menos 44 px.
+ */
+
+:root {
+  --cb-tinta: #182634;
+  --cb-tinta-suave: #4a5b68;
+  --cb-fondo: #f3f6f8;
+  --cb-superficie: #ffffff;
+  --cb-borde: #d5dfe5;
+  --cb-borde-control: #7d919e;
+  --cb-primario: #075d72;
+  --cb-primario-oscuro: #054656;
+  --cb-foco: #d58c1d;
+  --cb-ok-fondo: #e3f4e8;
+  --cb-ok-tinta: #17532b;
+  --cb-aviso-fondo: #fdf1d8;
+  --cb-aviso-tinta: #6b4a05;
+  --cb-error-fondo: #fbe6e4;
+  --cb-error-tinta: #8a1c13;
+  --cb-info-fondo: #e2eef6;
+  --cb-info-tinta: #174766;
+  --cb-ancho: 1050px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cb-fondo);
+  color: var(--cb-tinta);
+  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------- estructura */
+
+body > header {
+  background: var(--cb-tinta);
+  color: #ffffff;
+  padding: 1rem max(1rem, calc((100% - var(--cb-ancho)) / 2));
+}
+
+body > header a {
+  color: #ffffff;
+}
+
+main {
+  max-width: var(--cb-ancho);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+section,
+.tarjeta {
+  background: var(--cb-superficie);
+  border: 1px solid var(--cb-borde);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+
+section > h2:first-child,
+.tarjeta > h2:first-child {
+  margin-top: 0;
+}
+
+a {
+  color: var(--cb-primario);
+}
+
+.nota {
+  color: var(--cb-tinta-suave);
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------ formularios */
+
+/* Los formularios de tareas que pinta form-js (CentralSys) traen su propia rejilla. */
+form:not(.fjs-form),
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.wide,
+.ancho {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+fieldset {
+  border: 1px solid var(--cb-borde);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem;
+  background: var(--cb-superficie);
+  color: var(--cb-tinta);
+  border: 1px solid var(--cb-borde-control);
+  border-radius: 5px;
+}
+
+textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.4rem;
+  height: 1.4rem;
+  min-height: 0;
+  padding: 0;
+  accent-color: var(--cb-primario);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #e9eef1;
+  color: var(--cb-tinta-suave);
+}
+
+/* ---------------------------------------------------------------- botones */
+
+button,
+.boton {
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  background: var(--cb-primario);
+  color: #ffffff;
+  border: 1px solid var(--cb-primario);
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover,
+.boton:hover {
+  background: var(--cb-primario-oscuro);
+  border-color: var(--cb-primario-oscuro);
+}
+
+button.secundario {
+  background: var(--cb-superficie);
+  color: var(--cb-primario);
+}
+
+button.secundario:hover {
+  background: var(--cb-info-fondo);
+}
+
+button.peligro {
+  background: var(--cb-error-tinta);
+  border-color: var(--cb-error-tinta);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* El foco se ve igual en todos los controles, también sobre la cabecera oscura. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--cb-foco);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------- tablas */
+
+.scroll,
+.desplazable {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--cb-borde);
+}
+
+th {
+  font-size: 0.9rem;
+  color: var(--cb-tinta-suave);
+}
+
+td button {
+  margin: 0 0.4rem 0.4rem 0;
+}
+
+ul.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.lista > li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--cb-borde);
+}
+
+/* --------------------------------------------------------------- mensajes */
+
+#message,
+.mensaje {
+  white-space: pre-wrap;
+}
+
+#message:not(:empty),
+.mensaje:not(:empty) {
+  padding: 0.75rem 1rem;
+  background: var(--cb-info-fondo);
+  color: var(--cb-info-tinta);
+  border-left: 4px solid var(--cb-info-tinta);
+  border-radius: 4px;
+}
+
+#message.ok:not(:empty),
+.mensaje.ok:not(:empty) {
+  background: var(--cb-ok-fondo);
+  color: var(--cb-ok-tinta);
+  border-left-color: var(--cb-ok-tinta);
+}
+
+#message.error:not(:empty),
+.mensaje.error:not(:empty) {
+  background: var(--cb-error-fondo);
+  color: var(--cb-error-tinta);
+  border-left-color: var(--cb-error-tinta);
+}
+
+/* Insignias de estado: el texto siempre acompaña al color. */
+.insignia {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  background: #e9eef1;
+  color: var(--cb-tinta);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.insignia.ok {
+  background: var(--cb-ok-fondo);
+  color: var(--cb-ok-tinta);
+}
+
+.insignia.pendiente {
+  background: var(--cb-aviso-fondo);
+  color: var(--cb-aviso-tinta);
+}
+
+.insignia.error {
+  background: var(--cb-error-fondo);
+  color: var(--cb-error-tinta);
+}
+
+.insignia.info {
+  background: var(--cb-info-fondo);
+  color: var(--cb-info-tinta);
+}
+
+/* ------------------------------------------------- sesión (lo pinta auth.js) */
+
+/* Sin una sesión válida para el portal solo se ve lo que pinta auth.js. */
+html[data-cb-sesion]:not([data-cb-sesion="activa"]) main > :not(#cb-sesion) {
+  display: none !important;
+}
+
+.cb-sesion {
+  margin-bottom: 1.5rem;
+}
+
+.cb-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  padding: 0.6rem 1rem;
+  background: var(--cb-superficie);
+  border: 1px solid var(--cb-borde);
+  border-radius: 10px;
+}
+
+.cb-barra-grupos {
+  flex: 1 1 12rem;
+  color: var(--cb-tinta-suave);
+}
+
+.cb-barra-error:not(:empty),
+.cb-login-error:not(:empty) {
+  color: var(--cb-error-tinta);
+  font-weight: 600;
+}
+
+.cb-login,
+.cb-aviso {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: var(--cb-superficie);
+  border: 1px solid var(--cb-borde);
+  border-radius: 10px;
+}
+
+.cb-login {
+  grid-template-columns: 1fr;
+}
+
+.cb-login h2,
+.cb-login p {
+  margin: 0;
+}
+
+.cb-login-ayuda {
+  color: var(--cb-tinta-suave);
+  font-size: 0.95rem;
+  white-space: pre-line;
+}
+
+.cb-aviso {
+  border-left: 4px solid var(--cb-aviso-tinta);
+  background: var(--cb-aviso-fondo);
+  color: var(--cb-aviso-tinta);
+}
+
+.cb-aviso p {
+  margin-top: 0;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 1.25rem 0.75rem;
+  }
+
+  section,
+  .tarjeta {
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
